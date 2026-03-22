@@ -62,8 +62,8 @@ public class EmployeeControllerPIT {
                 """;
 
         mockMvc.perform(post("/employees/add")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(emp1))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(emp1))
                 .andExpect(status().isOk());
 
         mockMvc.perform(post("/employees/add")
@@ -89,5 +89,20 @@ public class EmployeeControllerPIT {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isEmpty());
 
+    }
+
+    @Test
+    void testbadrequest() throws Exception {
+        String emp1 = """
+                {
+                    "name":"",
+                    "department":"BTS"
+                }
+                """;
+
+        mockMvc.perform(post("/employees/add")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(emp1))
+                .andExpect(status().isBadRequest());
     }
 }

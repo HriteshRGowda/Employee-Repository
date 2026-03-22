@@ -1,5 +1,6 @@
 package com.example.hritesh.demo;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ public class EmployeeController
     private EmployeeService service;
 
     @PostMapping("/add")
-    public void addEmployee(@RequestBody Employee employee)
+    public void addEmployee(@Valid @RequestBody Employee employee)
     {
 
         service.addEmployee(employee);
