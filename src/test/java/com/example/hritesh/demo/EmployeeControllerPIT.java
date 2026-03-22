@@ -82,4 +82,12 @@ public class EmployeeControllerPIT {
                 .andExpect(jsonPath("$[*].department").value(hasItem("Sales")));
 
     }
+
+    @Test
+    void testEmptyEMployeeData() throws Exception {
+        mockMvc.perform(get("/employees/getEmployee"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").isEmpty());
+
+    }
 }
